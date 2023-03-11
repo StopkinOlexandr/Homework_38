@@ -19,4 +19,21 @@ public class Pet {
   private String name;
   private String birthday;
   private Double weight;
+  public Pet(Kind kind, String name){
+    this.kind = kind;
+    this.name = name;
+  }
+
+  public Pet(Kind kind, String name, Double weight){
+    this.kind = kind;
+    this.name = name;
+    this.weight = weight;
+  }
+
+  public Pet(Kind kind, String name, Double weight, String birthday){
+    this.kind = kind;
+    this.name = name;
+    this.weight = weight;
+    this.birthday = birthday;
+  }
 }
