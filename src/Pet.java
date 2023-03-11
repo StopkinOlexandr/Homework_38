@@ -15,6 +15,7 @@
 //  Формат входных данных: количество строк с записями о домашних животных,
 //  затем сами записи в описанном формате.
 public class Pet {
+  final private static char SEP = ',';
   private Kind kind;
   private String name;
   private String birthday;
@@ -68,5 +69,28 @@ public class Pet {
     this.name = name;
     this.weight = weight;
     this.birthday = birthday;
+  }
+
+  public static Pet parsePet(String line){
+
+    if (line.length() == 0) {
+      throw new IllegalArgumentException("Empty input string!");
+    }
+    String[] param = line.split(",");
+    if(param.length == 1){
+      throw new IllegalArgumentException("Not enough arguments!");
+    }
+    if(param.length > 4){
+      throw new IllegalArgumentException("To many arguments!");
+    }
+    if (param.length == 2) {
+      return new Pet(Kind.valueOf(param[0]), param[1]);
+    }
+    if (param.length == 3) {
+      double weight = Double.parseDouble(param[2]);
+      return new Pet(Kind.valueOf(param[0]), param[1], weight);
+    }
+    double weight = Double.parseDouble(param[2]);
+    return new Pet(Kind.valueOf(param[0]), param[1], weight, param[3]);
   }
 }
