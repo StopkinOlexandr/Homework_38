@@ -29,11 +29,34 @@ public class MainStudent {  // написать базу данных студе
     }
     for (List groupList : students) {
 //      System.out.println(groupList);
-      List <Student> group = groupList;
+      List<Student> group = groupList;
       System.out.println(group.get(0).getGroup());
-      for (Student student: group) {
+      for (Student student : group) {
         System.out.printf("%15s (%s) в группе %s%n", student.getName(), student.getEMail(),
             student.getGroup());
+      }
+    }
+    outputAsInput(students);
+  }
+
+  public static void outputAsInput(List<List<Student>> students) {
+    //для того что бы потом быстро пробежаться и записать в файл или еще что - то
+    List<String> output = new ArrayList<>();
+    int groupsQuantity = students.size();
+    output.add("" + groupsQuantity);
+    System.out.println(groupsQuantity);
+    for (List groupList : students) {
+      List<Student> group = groupList;
+      String groupName = group.get(0).getGroup();
+      output.add(groupName);
+      System.out.println(groupName);
+      int groupSize = group.size();
+      output.add("" + groupSize);
+      System.out.println(groupSize);
+      for (Student student : group) {
+        String studForOutput = student.getName() + "," + student.getEMail();
+        System.out.println(studForOutput);
+        output.add(studForOutput);
       }
     }
   }
@@ -42,7 +65,7 @@ public class MainStudent {  // написать базу данных студе
   // - прочитать количество студентов
   // - прочитать информацию о студентах - "имя" или "имя,e-mail" для каждого в отдельной строке
   private static List<Student> readGroup(BufferedReader fr) throws IOException {
-    List <Student> studentsInGroup = new ArrayList<>();
+    List<Student> studentsInGroup = new ArrayList<>();
     String groupName = fr.readLine();
     int studentsNumber = Integer.parseInt(fr.readLine());
     for (int i = 0; i < studentsNumber; ++i) {
