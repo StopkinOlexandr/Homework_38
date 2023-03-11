@@ -1,4 +1,5 @@
 import java.io.*;
+import java.security.KeyStore;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,30 +19,37 @@ public class MainStudent {  // написать базу данных студе
     File filePath = new File("res/students.txt");
 //    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     BufferedReader fr = new BufferedReader(new FileReader(filePath));
-    List<Student> students = new ArrayList<>();
+    List<List<Student>> students = new ArrayList<>();
     // прочитать количество групп
 //    int groups = Integer.parseInt(br.readLine());
     int groups = Integer.parseInt(fr.readLine());
     for (int groupId = 0; groupId < groups; ++groupId) {
       // для каждой группы:
-      readGroup(fr, students);
+      students.add(readGroup(fr));
     }
-    for (Student student : students) {
-      System.out.printf("%15s (%s) в группе %s%n", student.getName(), student.getEMail(),
-          student.getGroup());
+    for (List groupList : students) {
+//      System.out.println(groupList);
+      List <Student> group = groupList;
+      System.out.println(group.get(0).getGroup());
+      for (Student student: group) {
+        System.out.printf("%15s (%s) в группе %s%n", student.getName(), student.getEMail(),
+            student.getGroup());
+      }
     }
   }
 
   // - прочитать название группы
   // - прочитать количество студентов
   // - прочитать информацию о студентах - "имя" или "имя,e-mail" для каждого в отдельной строке
-  private static void readGroup(BufferedReader fr, List<Student> students) throws IOException {
+  private static List<Student> readGroup(BufferedReader fr) throws IOException {
+    List <Student> studentsInGroup = new ArrayList<>();
     String groupName = fr.readLine();
     int studentsNumber = Integer.parseInt(fr.readLine());
     for (int i = 0; i < studentsNumber; ++i) {
       String line = fr.readLine();
       Student student = Student.parseStudent(groupName, line);
-      students.add(student);
+      studentsInGroup.add(student);
     }
+    return studentsInGroup;
   }
 }
