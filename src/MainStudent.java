@@ -27,15 +27,6 @@ public class MainStudent {  // написать базу данных студе
       // для каждой группы:
       students.add(readGroup(fr));
     }
-    for (List groupList : students) {
-//      System.out.println(groupList);
-      List<Student> group = groupList;
-      System.out.println(group.get(0).getGroup());
-      for (Student student : group) {
-        System.out.printf("%15s (%s) в группе %s%n", student.getName(), student.getEMail(),
-            student.getGroup());
-      }
-    }
     outputAsInput(students);
   }
 
