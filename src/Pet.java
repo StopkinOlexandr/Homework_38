@@ -19,6 +19,24 @@ public class Pet {
   private String name;
   private String birthday;
   private Double weight;
+
+  public Kind getKind() {
+    return kind;
+  }
+
+  public String getName() {
+    return name;
+  }
+
+  public String getBirthday() {
+    return birthday;
+  }
+
+  public Double getWeight() {
+    return weight;
+  }
+
+
   public Pet(Kind kind, String name){
     this.kind = kind;
     this.name = name;
