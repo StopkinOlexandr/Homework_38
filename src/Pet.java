@@ -53,44 +53,59 @@ public class Pet {
     this.weight = weight;
   }
 
-  public Pet(Kind kind, String name){
+  public Pet(Kind kind, String name) {
     this.kind = kind;
     this.name = name;
   }
 
-  public Pet(Kind kind, String name, Double weight){
+  public Pet(Kind kind, String name, Double weight) {
     this.kind = kind;
     this.name = name;
     this.weight = weight;
   }
 
-  public Pet(Kind kind, String name, Double weight, String birthday){
+  public Pet(Kind kind, String name, Double weight, String birthday) {
     this.kind = kind;
     this.name = name;
     this.weight = weight;
     this.birthday = birthday;
   }
 
-  public static Pet parsePet(String line){
-
+  public static Pet parsePet(String line) {
+    String petKind;
     if (line.length() == 0) {
       throw new IllegalArgumentException("Empty input string!");
     }
     String[] param = line.split(",");
-    if(param.length == 1){
+    if (param.length == 1) {
       throw new IllegalArgumentException("Not enough arguments!");
     }
-    if(param.length > 4){
+    if (param.length > 4) {
       throw new IllegalArgumentException("To many arguments!");
     }
+    if (isKindPresent(param[0].toUpperCase())) {
+      petKind = param[0].toUpperCase();
+    } else {
+      petKind = "OTHER";
+    }
+
     if (param.length == 2) {
-      return new Pet(Kind.valueOf(param[0]), param[1]);
+      return new Pet(Kind.valueOf(petKind), param[1]);
     }
     if (param.length == 3) {
       double weight = Double.parseDouble(param[2]);
-      return new Pet(Kind.valueOf(param[0]), param[1], weight);
+      return new Pet(Kind.valueOf(petKind), param[1], weight);
     }
     double weight = Double.parseDouble(param[2]);
-    return new Pet(Kind.valueOf(param[0]), param[1], weight, param[3]);
+    return new Pet(Kind.valueOf(petKind), param[1], weight, param[3]);
+  }
+
+  private static boolean isKindPresent(String data) {
+    try {
+      Enum.valueOf(Kind.class, data);
+      return true;
+    } catch (IllegalArgumentException e) {
+      return false;
+    }
   }
 }
