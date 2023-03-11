@@ -36,6 +36,21 @@ public class Pet {
     return weight;
   }
 
+  public void setKind(Kind kind) {
+    this.kind = kind;
+  }
+
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setBirthday(String birthday) {
+    this.birthday = birthday;
+  }
+
+  public void setWeight(Double weight) {
+    this.weight = weight;
+  }
 
   public Pet(Kind kind, String name){
     this.kind = kind;
