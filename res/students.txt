@@ -1,0 +1,12 @@
+2
+cohort01
+4
+Vasya,vasja@cohort01.info
+Petya,petya@cohort01.info
+Lesha,lesha@cohort01.info
+Misha,misha@cohort01.info
+cohort02
+3
+Vasya2,vasja2@cohort01.info
+Petya2,petya2@cohort01.info
+Lesha2,lesha2@cohort01.info
